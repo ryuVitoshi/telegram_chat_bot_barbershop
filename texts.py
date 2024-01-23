@@ -34,3 +34,6 @@ SERVICES = '''Choose service below'''
 
 # SIGN UP
 SIGN_UP = '''Choose service below'''
+
+# PROFILE
+PROFILE = '''Choose service below'''

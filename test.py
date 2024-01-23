@@ -9,7 +9,7 @@ import sqlite3
 import texts
 import models
 
-bot = credentials.bot
+from credentials import bot
 
 services_dict = models.services_dict
 

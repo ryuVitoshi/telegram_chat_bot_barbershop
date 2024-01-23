@@ -5,7 +5,7 @@ c = con.cursor()
 
 # USERS
 c.execute('''CREATE TABLE IF NOT EXISTS users
-             (chat_id INTEGER PRIMARY KEY,
+             (user_id INTEGER PRIMARY KEY,
               username TEXT,
               full_name TEXT,
               phone TEXT)
@@ -22,8 +22,7 @@ c.execute('''CREATE TABLE IF NOT EXISTS employees
 c.execute('''INSERT INTO employees (full_name, role, phone) VALUES
              ('Andriy Melnikov','Owner','+380123456789'),
              ('Milana Pavun','Master hairdresser','+380987654321'),
-             ('Pavlo Mazilo','Hairdresser','+380654321789'),
-             ('Melon Krabik','Trainee','+380321654987');
+             ('Pavlo Mazilo','Hairdresser','+380654321789');
              ''')
 
 # SCHEDULE
@@ -75,11 +74,13 @@ c.execute('''CREATE TABLE IF NOT EXISTS appointments
              (app_id INTEGER PRIMARY KEY,
               app_date TEXT,
               app_time TEXT,
-              comments TEXT,
-              service INTEGER,
+              comment TEXT,
               user INTEGER,
+              service INTEGER,
+              employee INTEGER,
+              FOREIGN KEY(user) REFERENCES users(user_id),
               FOREIGN KEY(service) REFERENCES services(service_id),
-              FOREIGN KEY(user) REFERENCES users(chat_id)
+              FOREIGN KEY(employee) REFERENCES employees(employee_id)
               )''')
 
 con.commit()
